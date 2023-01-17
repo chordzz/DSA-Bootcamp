@@ -1,7 +1,6 @@
 
 var MyHashMap = function() {
     this.hashMap = []
-    this.size = 0
 };
 
 /** 
@@ -11,7 +10,6 @@ var MyHashMap = function() {
  */
 MyHashMap.prototype.put = function(key, value) {
     let index = 0;
-    console.log(this.hashMap)
     
     if (this.hashMap.length > 0){
         for ([x, y] of this.hashMap){
@@ -24,7 +22,6 @@ MyHashMap.prototype.put = function(key, value) {
     }
     
     this.hashMap.push([key, value])
-    this.size++
 };
 
 /** 
@@ -54,8 +51,6 @@ MyHashMap.prototype.remove = function(key) {
         }
         index++;
     }
-    
-    this.size--;
 };
 
 /** 
