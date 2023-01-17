@@ -1,6 +1,7 @@
 
 var MyHashMap = function() {
     this.hashMap = []
+    this.size = 0
 };
 
 /** 
@@ -9,13 +10,21 @@ var MyHashMap = function() {
  * @return {void}
  */
 MyHashMap.prototype.put = function(key, value) {
-    for(let i = 0; i < this.hashMap.length; i++){
-        if(this.hashMap[i][0] === key){
-            this.hashMap[i][1] = value
-            return
+    let index = 0;
+    console.log(this.hashMap)
+    
+    if (this.hashMap.length > 0){
+        for ([x, y] of this.hashMap){
+            if(x === key){
+                this.hashMap[index] = [key, value];
+                return
+            }
+            index++;
         }
     }
+    
     this.hashMap.push([key, value])
+    this.size++
 };
 
 /** 
@@ -23,13 +32,12 @@ MyHashMap.prototype.put = function(key, value) {
  * @return {number}
  */
 MyHashMap.prototype.get = function(key) {
-    for(let i = 0; i < this.hashMap.length; i++){
-        if(this.hashMap[i][0] === key){
-            return this.hashMap[i][1]
+    for ([x, y] of this.hashMap){
+        if(x === key){
+            return y;
         }
     }
-    
-    return -1;
+    return -1
 };
 
 /** 
@@ -37,11 +45,17 @@ MyHashMap.prototype.get = function(key) {
  * @return {void}
  */
 MyHashMap.prototype.remove = function(key) {
-    for(let i = 0; i < this.hashMap.length; i++){
-        if(this.hashMap[i][0] === key){
-            delete this.hashMap[i]
+    let index = 0;
+    
+    for ([x, y] of this.hashMap){
+        if(x === key){
+            this.hashMap.splice(index, 1);
+            return
         }
+        index++;
     }
+    
+    this.size--;
 };
 
 /** 
